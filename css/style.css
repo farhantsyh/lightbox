@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --myBoxShadow: 0 10px 20px rgba(0,0,0,0.19),
+                   0 6px 6px rgba(0,0,0,0.23);
+    --myFont     : 'Poppins',sans-serif;
+}
+
+body {
+    font: 18px/36px var(--myFont);
+    background-color: #ddd;
+}
+
+h1 {
+    font-size: 80px;
+    margin: 150px 0 50px 0;
+    text-align: center;
+    text-shadow: 1px 1px 4px white;
+}
+
+.container {
+    width: 600px;
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    box-shadow: var(--myBoxShadow);
+    border-radius: 10px;
+}
+
+.gallery li {
+    width: 120px;
+    height: 120px;
+    /* overflow: hidden; */
+    float: left;
+    margin-right: 15px;
+    position: relative;
+}
+
+.gallery li, .gallery li span , .gallery li img {
+    border-radius: 13px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1),
+    0 6px 6px rgba(0,0,0,0.2);
+}
+
+.gallery li span {
+    display: block;
+    background-color: rgba(200,200,200,.5);
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    line-height: 55px;
+    color: #181819;
+    text-shadow: 1px 1px 1px #ddd;
+    opacity: 0;
+    transition: .5s;
+    transform: scale(0) rotate(0);
+}
+
+.gallery li a:hover span{
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+}
+
+.clear {
+    clear: both;
+}
+
+.overlay {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0);
+    z-index: 3;
+    transition: .8s;
+    text-align: center;
+    padding: 150px;
+}
+
+.overlay:target {
+    width: auto;
+    height: auto;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.overlay img {
+    max-height: 100%;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1),
+    0 6px 6px rgba(0,0,0,0.2);
+}
+
+.overlay:target img {
+    animation: zoomAndFade .8s;
+}
+
+@keyframes zoomAndFade {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownFade {
+    0% {
+        opacity: 0;
+        margin-top: -20px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.overlay .close {
+    position: absolute;
+    top: 120px;
+    right: 350px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    font-weight: 500;
+    z-index: 11;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    opacity: 0;
+}
+
+.overlay:target .close {
+    animation: slideDownFade .5s .5s forwards;
+}
